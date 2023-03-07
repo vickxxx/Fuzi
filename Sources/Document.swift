@@ -126,7 +126,7 @@ open class XMLDocument {
     try self.init(buffer: buffer, options: options)
   }
 
-  fileprivate convenience init(buffer: UnsafeBufferPointer<Int8>, options: Int32) throws {
+  public convenience init(buffer: UnsafeBufferPointer<Int8>, options: Int32) throws {
     guard let document = type(of: self).parse(buffer: buffer, options: options) else {
       throw XMLError.lastError(defaultError: .parserFailure)
     }
@@ -134,11 +134,11 @@ open class XMLDocument {
     self.init(cDocument: document)
   }
 
-  fileprivate class func parse(buffer: UnsafeBufferPointer<Int8>, options: Int32) -> xmlDocPtr? {
+  public class func parse(buffer: UnsafeBufferPointer<Int8>, options: Int32) -> xmlDocPtr? {
     return xmlReadMemory(buffer.baseAddress, Int32(buffer.count), "", nil, options)
   }
   
-  fileprivate init(cDocument: xmlDocPtr) {
+  public init(cDocument: xmlDocPtr) {
     self.cDocument = cDocument
     if let cRoot = xmlDocGetRootElement(cDocument) {
       root = XMLElement(cNode: cRoot, document: self)
