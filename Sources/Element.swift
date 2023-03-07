@@ -145,13 +145,7 @@ open class XMLElement: XMLNode {
     return children(tag: tag, inNamespace: ns)
   }
     
-    open func remove(){
-//        cNode.pointee
-        cNode.pointee.prev.pointee.next = cNode.pointee.next
-        cNode.pointee.next.pointee.prev = cNode.pointee.prev
-        xmlUnlinkNode(cNode)
-        xmlFreeNode(cNode)
-    }
+
 
   // MARK: - Accessing Content
   /// Whether the element has a value.
