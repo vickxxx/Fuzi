@@ -207,7 +207,7 @@ open class HTMLDocument: XMLDocument {
     return root?.firstChild(tag: "body")
   }
 
-  fileprivate override class func parse(buffer: UnsafeBufferPointer<Int8>, options: Int32) -> xmlDocPtr? {
+  public override class func parse(buffer: UnsafeBufferPointer<Int8>, options: Int32) -> xmlDocPtr? {
     return htmlReadMemory(buffer.baseAddress, Int32(buffer.count), "", nil, options)
   }
 }
